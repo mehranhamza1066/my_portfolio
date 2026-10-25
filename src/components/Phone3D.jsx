@@ -1,19 +1,56 @@
 import { useEffect, useRef } from 'react'
 
-// Real 3D phone (three.js) recreating tamalsen.dev's featured-project loop:
-// a fast 360° flip around the phone's long axis, then a slow drift, every 5s.
+// Real 3D phone (three.js) recreating tamalsen.dev's featured-project loop.
+// Keyframes were read off that video frame by frame: a fast tumbling 360°
+// flip (the top tips far back mid-flip), then a slow drift, every 5 seconds.
 const LOOP = 5
-const FLIP = 1.3
-const FROM = (70 * Math.PI) / 180 // steep angle, screen turning away
-const REST = (-28 * Math.PI) / 180 // facing the viewer after the flip
+const LEAN = 0.5 // radians the phone leans to the left, whole loop
+const deg = Math.PI / 180
 
-const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
-const easeInOutSine = (t) => -(Math.cos(Math.PI * t) - 1) / 2
+// [time s, yaw° (spin around long axis), pitch° (− = top tips away), x offset]
+const KEYS = [
+  [0.0, 75, -12, 0],
+  [0.2, 108, -15, -0.03],
+  [0.4, 168, -20, -0.12],
+  [0.5, 200, -26, -0.13],
+  [0.6, 266, -34, -0.02],
+  [0.7, 298, -40, 0.07],
+  [0.8, 318, -40, 0.09],
+  [0.9, 331, -35, 0.07],
+  [1.0, 339, -28, 0.04],
+  [1.2, 347, -18, 0.01],
+  [2.6, 365, -11, 0],
+  [4.4, 410, -9, 0],
+]
 
-function spinAngle(time) {
+// Key i of an endless loop: wraps around, adding a full turn per lap.
+function key(i) {
+  const n = KEYS.length
+  const lap = Math.floor(i / n)
+  const [t, yaw, pitch, x] = KEYS[((i % n) + n) % n]
+  return [t + lap * LOOP, yaw + lap * 360, pitch, x]
+}
+
+// Smooth (C1) cubic Hermite through uneven keyframes.
+function sample(time) {
   const p = time % LOOP
-  if (p < FLIP) return FROM + (REST + Math.PI * 2 - FROM) * easeInOutCubic(p / FLIP)
-  return REST + (FROM - REST) * easeInOutSine((p - FLIP) / (LOOP - FLIP))
+  let i = KEYS.length - 1
+  while (KEYS[i][0] > p) i--
+  const k0 = key(i - 1)
+  const k1 = key(i)
+  const k2 = key(i + 1)
+  const k3 = key(i + 2)
+  const dt = k2[0] - k1[0]
+  const u = (p - k1[0]) / dt
+  const h00 = 2 * u ** 3 - 3 * u ** 2 + 1
+  const h10 = u ** 3 - 2 * u ** 2 + u
+  const h01 = -2 * u ** 3 + 3 * u ** 2
+  const h11 = u ** 3 - u ** 2
+  return [1, 2, 3].map((c) => {
+    const m1 = ((k2[c] - k0[c]) / (k2[0] - k0[0])) * dt
+    const m2 = ((k3[c] - k1[c]) / (k3[0] - k1[0])) * dt
+    return h00 * k1[c] + h10 * m1 + h01 * k2[c] + h11 * m2
+  })
 }
 
 function roundedRect(THREE, w, h, r) {
@@ -66,24 +103,19 @@ function buildPhone(THREE, texture, aspect) {
   const titanium = new THREE.MeshPhysicalMaterial({ color: 0x3a3a40, roughness: 0.22, metalness: 1, clearcoat: 0.6 })
   phone.add(new THREE.Mesh(bodyGeo, [glassBlack, titanium]))
 
-  // Screen: shows the screenshot as-is (not lit, not tone mapped) under a clear glossy coat.
-  const screen = new THREE.Mesh(
-    flatRect(THREE, screenW, screenH, 0.085),
-    new THREE.MeshPhysicalMaterial({
-      color: 0x000000,
-      emissive: 0xffffff,
-      emissiveMap: texture,
-      roughness: 0.1,
-      clearcoat: 1,
-      clearcoatRoughness: 0.04,
-      toneMapped: false,
-    }),
-  )
+  // Screen: the screenshot exactly as-is (unlit), under a faintly reflective glass layer.
+  const screenGeo = flatRect(THREE, screenW, screenH, 0.085)
+  const screen = new THREE.Mesh(screenGeo, new THREE.MeshBasicMaterial({ map: texture, toneMapped: false }))
   screen.position.z = front + 0.0008
-  phone.add(screen)
+  const glass = new THREE.Mesh(
+    screenGeo,
+    new THREE.MeshStandardMaterial({ color: 0x000000, roughness: 0.04, metalness: 1, transparent: true, opacity: 0.07 }),
+  )
+  glass.position.z = front + 0.0012
+  phone.add(screen, glass)
 
   const island = new THREE.Mesh(flatRect(THREE, 0.2, 0.052, 0.026), new THREE.MeshBasicMaterial({ color: 0x000000 }))
-  island.position.set(0, screenH / 2 - screenH * 0.026, front + 0.0016)
+  island.position.set(0, screenH / 2 - screenH * 0.026, front + 0.002)
   phone.add(island)
 
   // Side buttons
@@ -149,8 +181,9 @@ export default function Phone3D({ src, alt }) {
       rim.position.set(3, -1, -2)
       scene.add(key, rim)
 
-      const camera = new THREE.PerspectiveCamera(28, 1, 0.1, 50)
-      camera.position.set(0, 0, 5.4)
+      // Close, wide-ish camera for the strong perspective of the original.
+      const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 50)
+      camera.position.set(0, 0, 2.4)
 
       const texture = await new THREE.TextureLoader().loadAsync(src)
       if (disposed) {
@@ -161,11 +194,19 @@ export default function Phone3D({ src, alt }) {
       texture.anisotropy = renderer.capabilities.getMaxAnisotropy()
       const { phone } = buildPhone(THREE, texture, texture.image.width / texture.image.height)
 
-      // Outer group = the fixed lean; inner phone spins around its own long axis.
-      const tilt = new THREE.Group()
-      tilt.rotation.set(0.12, 0, 0.44)
-      tilt.add(phone)
-      scene.add(tilt)
+      // lean (z) → pitch (x, tips the top back) → phone spins on its long axis (y)
+      const lean = new THREE.Group()
+      lean.rotation.z = LEAN
+      const pitch = new THREE.Group()
+      lean.add(pitch)
+      pitch.add(phone)
+      scene.add(lean)
+      const pose = (t) => {
+        const [yaw, tip, x] = sample(t)
+        phone.rotation.y = yaw * deg
+        pitch.rotation.x = tip * deg
+        lean.position.x = x
+      }
 
       const resize = () => {
         const { clientWidth: w, clientHeight: h } = mount
@@ -183,7 +224,7 @@ export default function Phone3D({ src, alt }) {
       const start = performance.now()
       const render = () => {
         const t = (performance.now() - start) / 1000
-        phone.rotation.y = reduced ? REST : spinAngle(t)
+        pose(reduced ? 2.6 : t)
         renderer.render(scene, camera)
         if (!reduced && visible) raf = requestAnimationFrame(render)
       }
