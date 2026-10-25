@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { featured, projects } from '../data.jsx'
+import Phone3D from './Phone3D.jsx'
 
 const filters = ['All', ...new Set(projects.map((p) => p.category))]
 
@@ -50,7 +51,9 @@ export default function Work() {
             <path d="M18 110C14 70 40 30 96 18" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
             <path d="M80 10l18 8-12 15" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <img className="featured-phone" src={`/images/${featured.image}`} alt="Upthyme app home screen" />
+          <div className="featured-phone">
+            <Phone3D src={`/images/${featured.image}`} alt="Upthyme app home screen" />
+          </div>
           <div className="featured-copy">
             <p>Featured Project</p>
             <h3 className="mono">{featured.name}</h3>

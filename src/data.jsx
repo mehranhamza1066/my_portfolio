@@ -47,7 +47,7 @@ export const quote = {
 
 export const featured = {
   name: 'Upthyme',
-  image: 'employee-1.png',
+  image: 'upthyme-home.webp',
   href: 'https://play.google.com/store/apps/details?id=com.upthyme.employee',
 }
 

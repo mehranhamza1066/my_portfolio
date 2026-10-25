@@ -257,20 +257,101 @@ main, footer { position: relative; z-index: 1; }
 .work-title { font-family: var(--display); font-weight: 600; font-size: clamp(3.4rem, 9vw, 6rem); line-height: 1; margin-bottom: 36px; }
 .work-intro { max-width: 460px; color: var(--ink); }
 .featured { position: relative; display: grid; grid-template-columns: auto 1fr; align-items: end; gap: 26px; }
-.featured-phone {
-  grid-column: 2;
-  grid-row: 1;
-  justify-self: end;
-  width: min(230px, 100%);
-  margin-right: 36px;
-  border-radius: 34px;
-  border: 8px solid #111;
-  outline: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 40px 80px -20px rgba(124, 58, 237, 0.35), 0 30px 60px -20px #000;
-  transform: rotate(12deg);
-  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.3, 1);
+.featured-phone { grid-column: 2; grid-row: 1; justify-self: end; margin-right: 48px; }
+
+/* ---------- 3D phone (tamal-style turning mockup) ---------- */
+.phone3d-stage {
+  --pw: 230px;
+  --ph: calc(var(--pw) * 2.32);
+  --frame: #1c1c1f;
+  position: relative;
+  width: var(--pw);
+  height: var(--ph);
+  perspective: 1400px;
 }
-.featured:hover .featured-phone { transform: rotate(4deg) translateY(-8px); }
+.phone3d {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  animation: phoneTurn 7s ease-in-out infinite;
+}
+@keyframes phoneTurn {
+  0%, 100% { transform: rotateZ(-16deg) rotateX(14deg) rotateY(-38deg); }
+  50% { transform: rotateZ(-10deg) rotateX(10deg) rotateY(26deg); }
+}
+.phone3d-front, .phone3d-edge, .phone3d-back {
+  position: absolute;
+  inset: 0;
+  border-radius: calc(var(--pw) * 0.17);
+}
+.phone3d-front {
+  padding: calc(var(--pw) * 0.04);
+  background: linear-gradient(145deg, #3a3a40, #121214 45%, #2a2a2f);
+  box-shadow: inset 0 0 0 1.5px #55555c, inset 0 0 0 4px #0b0b0c;
+  transform: translateZ(1px);
+}
+.phone3d-edge {
+  background: linear-gradient(90deg, #4a4a52, #1a1a1d 30%, #26262b 70%, #4a4a52);
+  transform: translateZ(var(--z));
+}
+.phone3d-back {
+  background: linear-gradient(150deg, #2c2c33, #0f0f11);
+  transform: translateZ(-15px) rotateY(180deg);
+}
+.phone3d-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: calc(var(--pw) * 0.135);
+  overflow: hidden;
+  background: #fff;
+}
+.phone3d-screen img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.phone3d-island {
+  position: absolute;
+  top: 2.1%;
+  left: 50%;
+  width: 30%;
+  height: 3.6%;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: #000;
+}
+.phone3d-glare {
+  position: absolute;
+  inset: -20%;
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.28) 48%, transparent 60%);
+  animation: glare 7s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes glare {
+  0%, 100% { transform: translateX(-30%); }
+  50% { transform: translateX(30%); }
+}
+.phone3d-btn {
+  position: absolute;
+  width: 4px;
+  border-radius: 2px;
+  background: #3a3a40;
+}
+.phone3d-btn-power { right: -3px; top: 26%; height: 13%; }
+.phone3d-btn-vol1 { left: -3px; top: 22%; height: 8%; }
+.phone3d-btn-vol2 { left: -3px; top: 32%; height: 8%; }
+.phone3d-shadow {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: -40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(124, 58, 237, 0.45), transparent);
+  filter: blur(10px);
+  animation: shadowShift 7s ease-in-out infinite;
+}
+@keyframes shadowShift {
+  0%, 100% { transform: translateX(-12%) scaleX(0.9); }
+  50% { transform: translateX(10%) scaleX(1.05); }
+}
 .featured-arrow { position: absolute; left: 40px; top: 30px; width: 90px; color: #a78bfa; }
 .featured-copy { grid-column: 1; grid-row: 1; padding-bottom: 10px; }
 .featured-copy p { margin: 0 0 6px; font-family: var(--display); font-size: 1.15rem; }
@@ -291,7 +372,8 @@ main, footer { position: relative; z-index: 1; }
 @media (max-width: 860px) {
   .work-top { grid-template-columns: 1fr; }
   .featured { margin-top: 20px; grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 34px; }
-  .featured-phone { grid-column: 1; grid-row: 1; justify-self: center; width: 190px; margin-right: 0; transform: rotate(6deg); }
+  .featured-phone { grid-column: 1; grid-row: 1; justify-self: center; margin-right: 0; }
+  .phone3d-stage { --pw: 190px; }
   .featured-copy { grid-column: 1; grid-row: 2; }
   .featured-arrow { display: none; }
 }
