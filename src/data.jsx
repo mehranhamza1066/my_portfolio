@@ -51,27 +51,28 @@ export const featured = {
   href: 'https://play.google.com/store/apps/details?id=com.upthyme.employee',
 }
 
-// `shots` → phone screenshots in public/images. No shots → a styled title card.
+// `cover` → a full designed cover image; `shots` → phone screenshots; neither → a styled title card.
+// All images live in public/images.
 export const projects = [
   {
     title: 'Upthyme — Employee App',
     category: 'Production',
     stack: 'Flutter · Kotlin · Swift · Geofencing',
-    shots: ['employee-1.png', 'employee-3.png'],
+    cover: 'upthyme-employee-cover.webp',
     href: 'https://play.google.com/store/apps/details?id=com.upthyme.employee',
   },
   {
     title: 'Upthyme Manager',
     category: 'Production',
     stack: 'Flutter · WebSockets · Background caching',
-    shots: ['manager-1.png', 'manager-3.png'],
+    cover: 'upthyme-manager-cover.webp',
     href: 'https://play.google.com/store/apps/details?id=com.upthyme.manager',
   },
   {
     title: 'Upthyme Station — Face Clock-in',
     category: 'Production',
     stack: 'Flutter · Python · AWS · Face recognition',
-    shots: ['station-1.png', 'station-2.png'],
+    cover: 'upthyme-station-cover.webp',
     href: 'https://play.google.com/store/apps/details?id=com.upthyme.station',
   },
   {

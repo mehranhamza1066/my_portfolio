@@ -5,6 +5,13 @@ import Phone3D from './Phone3D.jsx'
 const filters = ['All', ...new Set(projects.map((p) => p.category))]
 
 function ProjectMedia({ project }) {
+  if (project.cover) {
+    return (
+      <div className="card-media cover">
+        <img src={`/images/${project.cover}`} alt={`${project.title} cover`} loading="lazy" />
+      </div>
+    )
+  }
   if (project.shots) {
     return (
       <div className="card-media phones">
