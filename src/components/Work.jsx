@@ -47,14 +47,16 @@ export default function Work() {
         </div>
 
         <div className="featured rv">
-          <svg className="featured-arrow" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-            <path d="M18 110C14 70 40 30 96 18" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-            <path d="M80 10l18 8-12 15" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
           <div className="featured-phone">
             <Phone3D src={`/images/${featured.image}`} alt="Upthyme app home screen" />
           </div>
           <div className="featured-copy">
+            {/* hand-drawn double-stroke arrow pointing up at the phone */}
+            <svg className="featured-arrow" viewBox="0 0 96 80" fill="none" aria-hidden="true">
+              <path d="M4 76C6 48 24 26 62 15" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" />
+              <path d="M10 77C13 52 30 32 64 22" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" />
+              <path d="M58 6L90 12 70 37 66 24Z" stroke="currentColor" strokeWidth="2.6" strokeLinejoin="round" />
+            </svg>
             <p>Featured Project</p>
             <h3 className="mono">{featured.name}</h3>
             <a className="btn-purple" href={featured.href} target="_blank" rel="noopener">
