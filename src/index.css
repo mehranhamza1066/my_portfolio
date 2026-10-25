@@ -260,8 +260,9 @@ main, footer { position: relative; z-index: 1; }
 .featured-phone { grid-column: 2; grid-row: 1; justify-self: end; }
 
 /* ---------- 3D phone (three.js canvas) ---------- */
-.phone3d-stage { position: relative; width: 500px; height: 560px; }
-.phone3d-stage canvas { display: block; width: 100%; height: 100%; }
+.phone3d-stage { position: relative; width: 520px; height: 620px; }
+/* canvas bleeds past the stage so the phone can swing close without clipping */
+.phone3d-stage canvas { position: absolute; inset: -14% -16%; display: block; width: 132%; height: 128%; pointer-events: none; }
 .phone3d-stage::after {
   content: '';
   position: absolute;
