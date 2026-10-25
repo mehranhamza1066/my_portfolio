@@ -1,22 +1,29 @@
-import { EMAIL, navLinks } from '../data.jsx'
+import { useEffect, useState } from 'react'
+import { navLinks } from '../data.jsx'
 
 export default function Nav() {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(scrollY > 40)
+    onScroll()
+    addEventListener('scroll', onScroll, { passive: true })
+    return () => removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
-    <nav>
-      <div className="wrap">
-        <a className="brand" href="#top">
-          Mehran<span>.</span>
-        </a>
-        <div className="navlinks">
-          {navLinks.map((l) => (
-            <a key={l.href} href={l.href}>
-              {l.label}
-            </a>
-          ))}
-          <a className="btn-sm" href={`mailto:${EMAIL}`}>
-            Hire me
+    <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
+      <a className="logo" href="#home">
+        Mehran<span className="logo-dot">.</span>
+        <span className="logo-cursor">_</span>
+      </a>
+      <div className="nav-links">
+        {navLinks.map((l, i) => (
+          <a key={l.href} href={l.href}>
+            <sup>0{i + 1}</sup>
+            <span className="slashes">//</span> {l.label}
           </a>
-        </div>
+        ))}
       </div>
     </nav>
   )

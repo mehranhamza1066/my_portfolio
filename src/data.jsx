@@ -1,159 +1,150 @@
 export const EMAIL = 'mehranhamza1066@gmail.com'
 export const GITHUB = 'https://github.com/mehranhamza1066'
 export const LINKEDIN = 'https://linkedin.com/in/mehranhamza'
+export const TASKLY_REPO = 'https://github.com/mehranhamza1066/task_management_app'
 
 export const navLinks = [
-  { href: '#about', label: 'About' },
-  { href: '#apps', label: 'Apps' },
-  { href: '#engineering', label: 'Engineering' },
-  { href: '#taskly', label: 'Taskly' },
+  { href: '#home', label: 'home' },
+  { href: '#expertise', label: 'expertise' },
+  { href: '#work', label: 'work' },
+  { href: '#experience', label: 'experience' },
+  { href: '#contact', label: 'contact' },
 ]
 
-export const fanShots = [
-  { src: 'employee-2.png', alt: 'Upthyme schedule screen' },
-  { src: 'manager-1.png', alt: 'Upthyme Manager dashboard' },
-  { src: 'employee-1.png', alt: 'Upthyme home screen', eager: true },
-  { src: 'employee-3.png', alt: 'Upthyme clock-in screen' },
-  { src: 'station-1.png', alt: 'Upthyme Station kiosk' },
+// Hero "Latest" list — jumps into the page or out to GitHub.
+export const latest = [
+  { label: 'Upthyme Station — face clock-in', href: '#work' },
+  { label: 'Geofencing that survives force-close', href: '#expertise' },
+  { label: 'Taskly — 17 BLoCs, 37 test files', href: TASKLY_REPO, external: true },
+  { label: 'Offline-first chat on Phoenix', href: '#expertise' },
 ]
 
-export const stats = [
-  { value: '3', label: 'Apps live on both stores' },
-  { value: '5,000+', label: 'Google Play downloads' },
-  { value: 'iOS + Android', label: 'Native code on both' },
-  { value: 'UTC+5', label: '4h US ET · full EU overlap' },
-]
-
-export const apps = [
+export const expertise = [
   {
-    name: 'Upthyme',
-    description: (
-      <>
-        The employee app. Shift schedules, clock in and out, breaks, time-off requests and team chat. The one with
-        5,000+ downloads — and the one with the hardest problem in it: clocking someone out automatically when they
-        leave a worksite, <strong>even with the app force-closed.</strong>
-      </>
-    ),
-    chips: ['Flutter', 'Kotlin', 'Swift', 'Geofencing', 'Phoenix Channels', 'Offline-first'],
-    play: 'https://play.google.com/store/apps/details?id=com.upthyme.employee',
-    appStore: 'https://apps.apple.com/us/app/upthyme/id6742220903',
-    shots: [
-      { src: 'employee-1.png', alt: 'Upthyme schedule' },
-      { src: 'employee-4.png', alt: 'Upthyme shift detail' },
-    ],
+    icon: 'flutter',
+    accent: 'var(--red)',
+    title: ['Flutter Dev', 'Android, iOS'],
+    body: 'Three production apps live on Google Play and the App Store. Clean Architecture, BLoC and GetX, from first commit to store release.',
   },
   {
-    name: 'Upthyme Manager',
-    description: (
-      <>
-        The manager side. Create and assign shifts, watch daily attendance live, approve time-off, override clock-ins.
-        Weekly schedules are pre-cached in the background so approvals never wait on the network, and WebSocket updates
-        keep it in sync with the employee app in real time.
-      </>
-    ),
-    chips: ['Flutter', 'WebSockets', 'Clean Architecture', 'Background caching', 'REST'],
-    play: 'https://play.google.com/store/apps/details?id=com.upthyme.manager',
-    appStore: 'https://apps.apple.com/us/app/upthyme-manager/id6742194735',
-    shots: [
-      { src: 'manager-1.png', alt: 'Manager dashboard' },
-      { src: 'manager-3.png', alt: 'Manager scheduling' },
-    ],
+    icon: 'native',
+    accent: 'var(--blue)',
+    title: ['Native Platform', 'Kotlin, Swift'],
+    body: 'Method channels, foreground services, WorkManager and background location — geofencing that keeps working with the app force-closed.',
   },
   {
-    name: 'Upthyme Station',
-    description: (
-      <>
-        A kiosk app for shared workplace devices — employees clock in <strong>by face</strong>, matched against their
-        scheduled shift, with no personal login on the device. I owned this one end to end: I built the
-        cosine-similarity face-recognition model in Python, deployed it on AWS, and wired it into the Flutter client
-        myself.
-      </>
-    ),
-    chips: ['Flutter', 'Python', 'AWS', 'Face recognition', 'Camera'],
-    play: 'https://play.google.com/store/apps/details?id=com.upthyme.station',
-    appStore: 'https://apps.apple.com/us/app/upthyme-station/id6756040245',
-    shots: [
-      { src: 'station-1.png', alt: 'Station kiosk welcome' },
-      { src: 'station-2.png', alt: 'Station face clock-in' },
-    ],
+    icon: 'realtime',
+    accent: 'var(--amber)',
+    title: ['Real-time Apps', 'WebSockets, Offline'],
+    body: 'Offline-first chat on Phoenix Channels with read receipts, typing and presence. Local cache first, background sync after.',
   },
 ]
 
-export const engineering = [
+export const quote = {
+  text: 'Make it work, make it right, make it fast.',
+  by: 'Kent Beck',
+}
+
+export const featured = {
+  name: 'Upthyme',
+  image: 'employee-1.png',
+  href: 'https://play.google.com/store/apps/details?id=com.upthyme.employee',
+}
+
+// `shots` → phone screenshots in public/images. No shots → a styled title card.
+export const projects = [
   {
-    tag: 'Native Android + iOS',
-    title: 'Geofencing that survives force-close',
-    body: (
-      <>
-        Automatic clock-out when an employee leaves a worksite — working around Android's background-execution limits
-        with a foreground service, WorkManager and AlarmManager, and iOS background-location restrictions. Written in
-        Kotlin and Swift behind Flutter method channels. Apple's own listing documents the background location use.
-      </>
-    ),
+    title: 'Upthyme — Employee App',
+    category: 'Production',
+    stack: 'Flutter · Kotlin · Swift · Geofencing',
+    shots: ['employee-1.png', 'employee-3.png'],
+    href: 'https://play.google.com/store/apps/details?id=com.upthyme.employee',
   },
   {
-    tag: 'Real-time',
-    title: 'Offline-first chat on Phoenix Channels',
-    body: (
-      <>
-        Threaded replies, read receipts, typing indicators, presence, voice messages and compressed media. Reads are
-        served from a local cache and reconcile in the background, so conversations open instantly and stay correct on
-        a bad connection.
-      </>
-    ),
+    title: 'Upthyme Manager',
+    category: 'Production',
+    stack: 'Flutter · WebSockets · Background caching',
+    shots: ['manager-1.png', 'manager-3.png'],
+    href: 'https://play.google.com/store/apps/details?id=com.upthyme.manager',
   },
   {
-    tag: 'Platform',
-    title: 'Notifications like a native app',
-    body: (
-      <>
-        Android <code>MessagingStyle</code> notifications with inline reply, mark-as-read and mute handled in Kotlin via{' '}
-        <code>RemoteInput</code> — the same API WhatsApp uses — plus an iOS Notification Service Extension in Swift for
-        rich chat notifications.
-      </>
-    ),
+    title: 'Upthyme Station — Face Clock-in',
+    category: 'Production',
+    stack: 'Flutter · Python · AWS · Face recognition',
+    shots: ['station-1.png', 'station-2.png'],
+    href: 'https://play.google.com/store/apps/details?id=com.upthyme.station',
   },
   {
-    tag: 'ML + Cloud',
-    title: 'Face recognition, model to client',
-    body: (
-      <>
-        A cosine-similarity face-recognition service written in Python and deployed on AWS, then integrated into the
-        kiosk app. Built the model and the mobile integration — not just the Flutter half.
-      </>
-    ),
+    title: 'Taskly — Tasks & Habits',
+    category: 'Personal',
+    stack: 'Flutter · BLoC · Hive · 37 test files',
+    tint: ['#7c3aed', '#2563eb'],
+    href: TASKLY_REPO,
   },
   {
-    tag: 'Release',
-    title: 'CI/CD for two stores',
-    body: (
-      <>
-        GitHub Actions pipelines for Android and iOS including code signing, replacing manual release builds. I ship
-        the releases to Google Play and App Store Connect myself.
-      </>
-    ),
+    title: 'Needle — Tattoo Studio App',
+    category: 'Client',
+    stack: 'Flutter · GetX · Session timer billing',
+    tint: ['#e11d48', '#7c2d12'],
   },
   {
-    tag: 'Architecture',
-    title: 'Feature-first Clean Architecture',
-    body: (
-      <>
-        Strict data / domain / presentation separation with repositories and use cases, dependency injection, and
-        functional error handling at the domain boundary — across three apps sharing one backend.
-      </>
-    ),
+    title: 'Plantify.AR',
+    category: 'Personal',
+    stack: 'Flutter · Firebase · AR · Stripe',
+    tint: ['#059669', '#0e7490'],
   },
 ]
 
-export const tasklyNums = [
-  { value: '17', label: 'Features, clean architecture' },
-  { value: '17', label: 'BLoCs with event transformers' },
-  { value: '37', label: 'Test files — unit, widget, BLoC' },
-  { value: '6', label: 'Custom painter layers' },
+export const experience = [
+  {
+    role: 'Flutter Developer',
+    company: 'Askus Solution',
+    period: 'Dec 2024 – Present',
+    location: 'Faisalabad, Pakistan',
+    site: 'askussolution.tech',
+    body: 'Sole Flutter developer behind the Upthyme workforce platform — three apps (employee, manager and kiosk) on both stores. I own architecture, native Android & iOS code, CI/CD pipelines and store releases, working in a Jira Scrum flow with backend and QA.',
+    tags: ['Flutter', 'Dart', 'Kotlin', 'Swift', 'GetX', 'WebSockets', 'GitHub Actions'],
+  },
+  {
+    role: 'Flutter Developer',
+    company: 'Coding Clouds',
+    period: 'Aug 2024 – Oct 2024',
+    location: 'Remote (Lahore, Pakistan)',
+    body: 'Built core features of Needle, a tattoo studio app, with Flutter and GetX in a modular architecture — including a timer-based session workflow that bills by tattoo duration.',
+    tags: ['Flutter', 'GetX', 'REST'],
+  },
+  {
+    role: 'BS Computer Science',
+    company: 'National Textile University',
+    period: '2020 – 2024',
+    location: 'Faisalabad, Pakistan',
+    body: 'Graduated with a 3.62 GPA. Final year project: Plantify.AR — real-time AR previews of 3D plant models, with Firebase auth and Stripe payments.',
+    tags: ['Flutter', 'Firebase', 'AR', 'Stripe'],
+  },
 ]
 
-export const skills = [
-  'Flutter', 'Dart', 'Kotlin', 'Swift', 'Python', 'BLoC', 'GetX', 'Clean Architecture', 'REST APIs',
-  'WebSockets', 'Phoenix Channels', 'Firebase', 'FCM', 'Hive', 'SQLite', 'Method channels', 'WorkManager',
-  'Geolocation', 'Unit & widget testing', 'GitHub Actions', 'Code signing', 'AWS', 'Git', 'Jira · Scrum',
+// PLACEHOLDERS — swap in real quotes, names and roles.
+export const testimonials = [
+  {
+    text: 'Mehran owned our entire mobile layer. He took three apps from architecture to both app stores, and when Flutter wasn’t enough he went straight into Kotlin and Swift to get it done. Responsive, organised and always a step ahead on what could break in production.',
+    name: 'Client name',
+    role: 'Role · Company',
+  },
+  {
+    text: 'Fast, careful and easy to work with. Highly recommended.',
+    name: 'Client name',
+    role: 'Role · Company',
+  },
+  {
+    text: 'He solved the background location problem other developers had given up on — and documented it so the whole team understood it.',
+    name: 'Client name',
+    role: 'Role · Company',
+  },
+]
+
+export const socials = [
+  { label: 'LinkedIn', href: LINKEDIN },
+  { label: 'GitHub', href: GITHUB },
+  { label: 'Google Play', href: 'https://play.google.com/store/apps/details?id=com.upthyme.employee' },
+  { label: 'App Store', href: 'https://apps.apple.com/us/app/upthyme/id6742220903' },
 ]

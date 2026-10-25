@@ -1,12 +1,12 @@
 import Nav from './components/Nav.jsx'
 import Hero from './components/Hero.jsx'
-import About from './components/About.jsx'
-import Apps from './components/Apps.jsx'
-import Engineering from './components/Engineering.jsx'
-import Taskly from './components/Taskly.jsx'
-import Skills from './components/Skills.jsx'
+import Expertise from './components/Expertise.jsx'
+import Work from './components/Work.jsx'
+import Experience from './components/Experience.jsx'
+import Testimonials from './components/Testimonials.jsx'
 import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
+import ScrollTop from './components/ScrollTop.jsx'
 import { useReveal } from './hooks/useReveal.js'
 
 export default function App() {
@@ -14,24 +14,18 @@ export default function App() {
 
   return (
     <>
-      <div className="aura">
-        <div className="orb a" />
-        <div className="orb b" />
-        <div className="orb c" />
-      </div>
-      <div className="grid-bg" />
-
+      <div className="grid-bg" aria-hidden="true" />
       <Nav />
-      <main id="top">
+      <main>
         <Hero />
-        <About />
-        <Apps />
-        <Engineering />
-        <Taskly />
-        <Skills />
+        <Expertise />
+        <Work />
+        <Experience />
+        <Testimonials />
         <Contact />
       </main>
       <Footer />
+      <ScrollTop />
     </>
   )
 }
