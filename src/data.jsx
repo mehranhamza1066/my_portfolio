@@ -128,7 +128,7 @@ export const experience = [
 export const testimonials = [
   {
     paragraphs: [
-      'He proves that being "on time" is about respect, but "staying late" is about passion.',
+      'Mehran doesn\'t just deliver high-quality code; he delivers reliability.',
       'Mehran, thank you for the late nights, the early mornings, and the incredible impact you’ve made in just one year.',
       'You are a true cornerstone of the AskUs Solution family!',
     ],
