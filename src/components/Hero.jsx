@@ -1,5 +1,7 @@
 import { EMAIL, GITHUB, LINKEDIN, latest } from '../data.jsx'
 import { Cursor, FlutterLogo } from './Icons.jsx'
+import Signature from './Signature.jsx'
+import './Signature.css'
 
 export default function Hero() {
   return (
@@ -44,9 +46,7 @@ export default function Hero() {
               GitHub
             </a>
           </p>
-          <span className="signature" aria-hidden="true">
-            Mehran
-          </span>
+          <Signature />
         </div>
 
         <div className="latest rv">

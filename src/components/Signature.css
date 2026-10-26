@@ -1,0 +1,59 @@
+/* Signature draw-on + blink. Timeline (ms, from page load):
+   750 start → main 832 → ears 32+36 → eyes 18+16 → nose 40 → fill 500 → blink every 6s */
+.signature-art {
+  display: block;
+  width: clamp(130px, 17vw, 190px);
+  aspect-ratio: 320 / 230;
+  height: auto;
+  overflow: visible;
+  color: var(--ink);
+  transform: rotate(12deg);
+  transform-origin: 50% 50%;
+  user-select: none;
+}
+
+.sig-stroke {
+  stroke-dasharray: 1.025;
+  stroke-dashoffset: 1.025;
+  animation: sigDraw var(--d) ease-in var(--t) forwards;
+}
+.sig-main { --t: 750ms; --d: 832ms; }
+.sig-ear-l { --t: 1582ms; --d: 32ms; }
+.sig-ear-r { --t: 1614ms; --d: 36ms; }
+.sig-eye-l { --t: 1650ms; --d: 18ms; }
+.sig-eye-r { --t: 1668ms; --d: 16ms; }
+.sig-nose { --t: 1684ms; --d: 40ms; }
+
+.sig-fill {
+  fill: currentColor;
+  fill-opacity: 0;
+  animation:
+    sigDraw var(--d) ease-in var(--t) forwards,
+    sigFill 500ms ease-in 1724ms forwards;
+}
+
+.sig-eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation:
+    sigDraw var(--d) ease-in var(--t) forwards,
+    sigFill 500ms ease-in 1724ms forwards,
+    sigBlink 6s ease-in-out 2224ms infinite;
+}
+
+@keyframes sigDraw { to { stroke-dashoffset: 0; } }
+@keyframes sigFill { to { fill-opacity: 1; } }
+/* double blink near the end of each 6s cycle; everything else stays still */
+@keyframes sigBlink {
+  0%, 90%, 94%, 100% { transform: scaleY(1); }
+  92%, 96% { transform: scaleY(0.1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sig-stroke, .sig-fill, .sig-eye {
+    animation: none !important;
+    stroke-dashoffset: 0;
+    transform: none;
+  }
+  .sig-fill { fill-opacity: 1; }
+}
