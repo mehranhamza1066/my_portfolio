@@ -1,5 +1,5 @@
-import { EMAIL, GITHUB, LINKEDIN, latest } from '../data.jsx'
-import { Cursor, FlutterLogo } from './Icons.jsx'
+import { EMAIL, GITHUB, LINKEDIN } from '../data.jsx'
+import { FlutterLogo } from './Icons.jsx'
 import Signature from './Signature.jsx'
 import './Signature.css'
 
@@ -22,14 +22,11 @@ export default function Hero() {
           Lead Flutter developer @ Askus Solution
         </p>
         <p className="hero-bio rv">
-          Building Flutter apps that <a href="#work">actually ship</a> — three of them live on Google Play and the
-          App Store right now. Known for the parts most Flutter devs don't touch:{' '}
-          <a href="#expertise">native Kotlin &amp; Swift</a>, background geofencing and{' '}
-          <a href="#expertise">offline-first real-time</a> systems. Built my own product,{' '}
-          <a href="https://github.com/mehranhamza1066/task_management_app" target="_blank" rel="noopener">
-            Taskly
-          </a>
-          , to reference quality.
+          Flutter Developer experienced in building production-ready mobile applications. Strong expertise in{' '}
+          <a href="#api-websockets">API and WebSocket integration</a>,{' '}
+          <a href="#native-method-channel">native method channel</a> communication, and{' '}
+          <a href="#clean-architecture">clean architecture</a>. Proven experience delivering SaaS
+          applications with scalable architecture, maintainable codebases, and high-quality UI/UX
         </p>
 
         <div className="hero-links-row rv">
@@ -49,28 +46,22 @@ export default function Hero() {
           <Signature />
         </div>
 
-        <div className="latest rv">
-          <p className="mono latest-title">Latest</p>
-          <ul>
-            {latest.map((item) => (
-              <li key={item.label}>
-                <a
-                  className="mono"
-                  href={item.href}
-                  {...(item.external ? { target: '_blank', rel: 'noopener' } : {})}
-                >
-                  <Cursor className="cursor-icon" />
-                  {item.label}
-                </a>
-              </li>
-            ))}
-            <li>
-              <a className="mono view-all" href="#work">
-                View all ↗
-              </a>
-            </li>
-          </ul>
-        </div>
+        <section className="tech-stack rv" aria-labelledby="tech-stack-title">
+          <h2 id="tech-stack-title" className="mono tech-stack-title">Tech Stack</h2>
+          <dl className="tech-stack-list">
+            <div><dt>Frontend</dt><dd>Flutter, Dart, BLoC, GetX</dd></div>
+            <div><dt>Native</dt><dd>Kotlin, Swift, Method Channels</dd></div>
+            <div><dt>Backend</dt><dd>Python, Django, Firebase</dd></div>
+            <div><dt>Architecture</dt><dd>Clean Architecture</dd></div>
+            <div><dt>Integrations</dt><dd>REST APIs, WebSockets</dd></div>
+            <div><dt>Storage</dt><dd>Hive, offline caching</dd></div>
+            <div><dt>CI/CD</dt><dd>GitHub Actions, Fastlane</dd></div>
+          </dl>
+          <p className="tech-stack-note">
+            Flexible about tools, strict about structure. Currently focused on performance,
+            making app onboarding faster and smoother.
+          </p>
+        </section>
       </div>
 
       <div className="status mono">

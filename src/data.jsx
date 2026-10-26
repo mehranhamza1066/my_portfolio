@@ -21,18 +21,21 @@ export const latest = [
 
 export const expertise = [
   {
+    id: 'clean-architecture',
     icon: 'flutter',
     accent: 'var(--red)',
     title: ['Flutter Dev', 'Android, iOS'],
     body: 'Three production apps live on Google Play and the App Store. Clean Architecture, BLoC and GetX, from first commit to store release.',
   },
   {
+    id: 'native-method-channel',
     icon: 'native',
     accent: 'var(--blue)',
     title: ['Native Platform', 'Kotlin, Swift'],
     body: 'Method channels, foreground services, WorkManager and background location — geofencing that keeps working with the app force-closed.',
   },
   {
+    id: 'api-websockets',
     icon: 'realtime',
     accent: 'var(--amber)',
     title: ['Real-time Apps', 'WebSockets, Offline'],

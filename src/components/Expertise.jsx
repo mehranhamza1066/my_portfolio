@@ -24,7 +24,7 @@ export default function Expertise() {
 
       <div className="exp-grid">
         {expertise.map((e) => (
-          <article className="exp-card rv" key={e.title[0]}>
+          <article id={e.id} className="exp-card rv" key={e.title[0]}>
             <div className="exp-head">
               <ExpertiseIcon name={e.icon} />
               <h3>
