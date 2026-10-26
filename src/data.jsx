@@ -124,14 +124,13 @@ export const experience = [
   },
 ]
 
-// Key points from AskUs Solution's work-anniversary post. Wording is verbatim; "…" marks trimmed text.
+// Whole sentences copied exactly from AskUs Solution's work-anniversary post. Nothing trimmed or reworded.
 export const testimonials = [
   {
     paragraphs: [
-      '…Mehran Hamza is the heartbeat of our operations.',
-      'Mehran doesn\'t just deliver high-quality code; he delivers reliability.',
-      'Mehran doesn\'t just work the hours; he owns them. His blend of disciplined promptness and tireless work ethic is what makes him our Mobile Application Expert.',
-      '…the incredible impact you’ve made in just one year. You are a true cornerstone of the AskUs Solution family!',
+      'He proves that being "on time" is about respect, but "staying late" is about passion.',
+      'Mehran, thank you for the late nights, the early mornings, and the incredible impact you’ve made in just one year.',
+      'You are a true cornerstone of the AskUs Solution family!',
     ],
     name: 'AskUs Solution',
     role: 'Work anniversary post',
