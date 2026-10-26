@@ -2,8 +2,8 @@
 // Every stroke has pathLength="1" so the CSS draw timings in Signature.css
 // are independent of real path length.
 const MAIN =
-  // M with an oversized entry loop
-  'M 30 152 C 6 152 2 118 22 114 C 42 110 28 70 36 42 C 42 24 54 30 50 64 ' +
+  // M
+  'M 26 114 C 26 92 30 64 36 42 C 42 24 54 30 50 64 ' +
   'C 48 88 46 106 49 112 C 52 118 58 100 64 76 C 69 56 76 46 82 60 ' +
   'C 87 72 82 104 87 112 ' +
   // e
