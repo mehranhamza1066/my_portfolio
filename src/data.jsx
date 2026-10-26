@@ -124,25 +124,17 @@ export const experience = [
   },
 ]
 
-// From AskUs Solution's work-anniversary post. Quotes are verbatim.
-const ASKUS = { name: 'AskUs Solution', role: 'Work anniversary post' }
+// Key points from AskUs Solution's work-anniversary post. Wording is verbatim; "…" marks trimmed text.
 export const testimonials = [
   {
     paragraphs: [
-      'They say that punctuality is the soul of business, and if that’s true, Mehran Hamza is the heartbeat of our operations.',
+      '…Mehran Hamza is the heartbeat of our operations.',
+      'Mehran doesn\'t just deliver high-quality code; he delivers reliability.',
       'Mehran doesn\'t just work the hours; he owns them. His blend of disciplined promptness and tireless work ethic is what makes him our Mobile Application Expert.',
+      '…the incredible impact you’ve made in just one year. You are a true cornerstone of the AskUs Solution family!',
     ],
-    ...ASKUS,
-  },
-  {
-    paragraphs: ['Mehran doesn\'t just deliver high-quality code; he delivers reliability.'],
-    ...ASKUS,
-  },
-  {
-    paragraphs: [
-      'Mehran, thank you for the late nights, the early mornings, and the incredible impact you’ve made in just one year. You are a true cornerstone of the AskUs Solution family!',
-    ],
-    ...ASKUS,
+    name: 'AskUs Solution',
+    role: 'Work anniversary post',
   },
 ]
 
