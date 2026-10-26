@@ -17,7 +17,7 @@ export default function Hero() {
         <p className="mono hero-role rv">
           Flutter developer · Mobile engineer · Android &amp; iOS
           <br />
-          Sole Flutter dev @ Askus Solution
+          Lead Flutter developer @ Askus Solution
         </p>
         <p className="hero-bio rv">
           Building Flutter apps that <a href="#work">actually ship</a> — three of them live on Google Play and the

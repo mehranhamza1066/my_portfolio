@@ -98,12 +98,12 @@ export const projects = [
 
 export const experience = [
   {
-    role: 'Flutter Developer',
+    role: 'Lead Flutter Developer',
     company: 'Askus Solution',
     period: 'Dec 2024 – Present',
     location: 'Faisalabad, Pakistan',
     site: 'askussolution.tech',
-    body: 'Sole Flutter developer behind the Upthyme workforce platform — three apps (employee, manager and kiosk) on both stores. I own architecture, native Android & iOS code, CI/CD pipelines and store releases, working in a Jira Scrum flow with backend and QA.',
+    body: 'Lead Flutter developer behind the Upthyme workforce platform — three apps (employee, manager and kiosk) on both stores. I own architecture, native Android & iOS code, CI/CD pipelines and store releases, working in a Jira Scrum flow with backend and QA.',
     tags: ['Flutter', 'Dart', 'Kotlin', 'Swift', 'GetX', 'WebSockets', 'GitHub Actions'],
   },
   {
@@ -124,22 +124,25 @@ export const experience = [
   },
 ]
 
-// PLACEHOLDERS — swap in real quotes, names and roles.
+// From AskUs Solution's work-anniversary post. Quotes are verbatim.
+const ASKUS = { name: 'AskUs Solution', role: 'Work anniversary post' }
 export const testimonials = [
   {
-    text: 'Mehran owned our entire mobile layer. He took three apps from architecture to both app stores, and when Flutter wasn’t enough he went straight into Kotlin and Swift to get it done. Responsive, organised and always a step ahead on what could break in production.',
-    name: 'Client name',
-    role: 'Role · Company',
+    paragraphs: [
+      'They say that punctuality is the soul of business, and if that’s true, Mehran Hamza is the heartbeat of our operations.',
+      'Mehran doesn\'t just work the hours; he owns them. His blend of disciplined promptness and tireless work ethic is what makes him our Mobile Application Expert.',
+    ],
+    ...ASKUS,
   },
   {
-    text: 'Fast, careful and easy to work with. Highly recommended.',
-    name: 'Client name',
-    role: 'Role · Company',
+    paragraphs: ['Mehran doesn\'t just deliver high-quality code; he delivers reliability.'],
+    ...ASKUS,
   },
   {
-    text: 'He solved the background location problem other developers had given up on — and documented it so the whole team understood it.',
-    name: 'Client name',
-    role: 'Role · Company',
+    paragraphs: [
+      'Mehran, thank you for the late nights, the early mornings, and the incredible impact you’ve made in just one year. You are a true cornerstone of the AskUs Solution family!',
+    ],
+    ...ASKUS,
   },
 ]
 

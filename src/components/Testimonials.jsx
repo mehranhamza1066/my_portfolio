@@ -18,7 +18,11 @@ export default function Testimonials() {
             <span className="testi-mark">“</span>
             <span className="testi-avatar">{initials(t.name)}</span>
           </div>
-          <blockquote>{t.text}</blockquote>
+          <blockquote>
+            {t.paragraphs.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+          </blockquote>
           <figcaption>
             <b>– {t.name}</b>
             <span>{t.role}</span>

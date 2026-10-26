@@ -415,6 +415,8 @@ a.work-card:hover .card-media.phones img:nth-child(2) { transform: translateY(12
   font-weight: 600;
 }
 .testi blockquote { margin: 20px 0 22px; font-family: var(--display); font-size: 1rem; line-height: 1.6; }
+.testi blockquote p { margin: 0 0 1em; }
+.testi blockquote p:last-child { margin-bottom: 0; }
 .testi-0 blockquote { font-size: 1.12rem; }
 .testi figcaption b { display: block; font-family: var(--display); }
 .testi figcaption span { font-family: var(--display); font-size: 0.88rem; opacity: 0.9; }
