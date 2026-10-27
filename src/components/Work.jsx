@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { featured, projects } from '../data.jsx'
+import StoreDialog from './StoreDialog.jsx'
 import Phone3D from './Phone3D.jsx'
 
 const filters = ['All', ...new Set(projects.map((p) => p.category))]
@@ -31,6 +32,7 @@ function ProjectMedia({ project }) {
 }
 
 export default function Work() {
+  const [storeProject, setStoreProject] = useState(null)
   const [filter, setFilter] = useState('All')
   const visible = useMemo(
     () => (filter === 'All' ? projects : projects.filter((p) => p.category === filter)),
@@ -66,9 +68,9 @@ export default function Work() {
             </svg>
             <p>Featured Project</p>
             <h3 className="mono">{featured.name}</h3>
-            <a className="btn-purple" href={featured.href} target="_blank" rel="noopener">
+            <button className="btn-purple" onClick={() => setStoreProject(projects[0])} aria-haspopup="dialog">
               View Project
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -89,12 +91,12 @@ export default function Work() {
 
       <div className="work-grid">
         {visible.map((p) => {
-          const Tag = p.href ? 'a' : 'div'
+          const Tag = p.appStore ? 'button' : p.href ? 'a' : 'div'
           return (
             <Tag
               key={p.title}
               className="work-card"
-              {...(p.href ? { href: p.href, target: '_blank', rel: 'noopener' } : {})}
+              {...(p.appStore ? { type: 'button', onClick: () => setStoreProject(p), 'aria-haspopup': 'dialog' } : p.href ? { href: p.href, target: '_blank', rel: 'noopener' } : {})}
             >
               <ProjectMedia project={p} />
               <div className="card-body">
@@ -105,6 +107,7 @@ export default function Work() {
           )
         })}
       </div>
+      {storeProject && <StoreDialog project={storeProject} onClose={() => setStoreProject(null)} />}
     </section>
   )
 }

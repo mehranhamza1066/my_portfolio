@@ -63,6 +63,7 @@ export const projects = [
     stack: 'Flutter · Kotlin · Swift · Geofencing',
     cover: 'upthyme-employee-cover.webp',
     href: 'https://play.google.com/store/apps/details?id=com.upthyme.employee',
+    appStore: 'https://apps.apple.com/us/app/upthyme/id6742220903',
   },
   {
     title: 'Upthyme Manager',
@@ -70,6 +71,7 @@ export const projects = [
     stack: 'Flutter · WebSockets · Background caching',
     cover: 'upthyme-manager-cover.webp',
     href: 'https://play.google.com/store/apps/details?id=com.upthyme.manager',
+    appStore: 'https://apps.apple.com/us/app/upthyme-manager/id6742194735',
   },
   {
     title: 'Upthyme Station — Face Clock-in',
@@ -77,6 +79,7 @@ export const projects = [
     stack: 'Flutter · Python · AWS · Face recognition',
     cover: 'upthyme-station-cover.webp',
     href: 'https://play.google.com/store/apps/details?id=com.upthyme.station',
+    appStore: 'https://apps.apple.com/us/app/upthyme-station/id6756040245',
   },
   {
     title: 'Taskly — Tasks & Habits',

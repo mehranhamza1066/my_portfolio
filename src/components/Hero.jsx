@@ -1,5 +1,5 @@
 import { EMAIL, GITHUB, LINKEDIN } from '../data.jsx'
-import { FlutterLogo } from './Icons.jsx'
+import { Cursor, FlutterLogo } from './Icons.jsx'
 import Signature from './Signature.jsx'
 import './Signature.css'
 
@@ -49,13 +49,13 @@ export default function Hero() {
         <section className="tech-stack rv" aria-labelledby="tech-stack-title">
           <h2 id="tech-stack-title" className="mono tech-stack-title">Tech Stack</h2>
           <dl className="tech-stack-list">
-            <div><dt>Frontend</dt><dd>Flutter, Dart, BLoC, GetX</dd></div>
-            <div><dt>Native</dt><dd>Kotlin, Swift, Method Channels</dd></div>
-            <div><dt>Backend</dt><dd>Python, Django, Firebase</dd></div>
-            <div><dt>Architecture</dt><dd>Clean Architecture</dd></div>
-            <div><dt>Integrations</dt><dd>REST APIs, WebSockets</dd></div>
-            <div><dt>Storage</dt><dd>Hive, offline caching</dd></div>
-            <div><dt>CI/CD</dt><dd>GitHub Actions, Fastlane</dd></div>
+            <div><dt><Cursor className="tech-stack-cursor" />Frontend</dt><dd>Flutter, Dart, BLoC, GetX</dd></div>
+            <div><dt><Cursor className="tech-stack-cursor" />Native</dt><dd>Kotlin, Swift, Method Channels</dd></div>
+            <div><dt><Cursor className="tech-stack-cursor" />Backend</dt><dd>Python, Django, Firebase</dd></div>
+            <div><dt><Cursor className="tech-stack-cursor" />Architecture</dt><dd>Clean Architecture</dd></div>
+            <div><dt><Cursor className="tech-stack-cursor" />Integrations</dt><dd>REST APIs, WebSockets</dd></div>
+            <div><dt><Cursor className="tech-stack-cursor" />Storage</dt><dd>Hive, offline caching</dd></div>
+            <div><dt><Cursor className="tech-stack-cursor" />CI/CD</dt><dd>GitHub Actions, Fastlane</dd></div>
           </dl>
           <p className="tech-stack-note">
             Flexible about tools, strict about structure. Currently focused on performance,
