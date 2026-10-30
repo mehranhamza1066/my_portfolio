@@ -1,5 +1,6 @@
 import { EMAIL, GITHUB, LINKEDIN } from '../data.jsx'
 import { Cursor, FlutterLogo } from './Icons.jsx'
+import HeroAnimation from './HeroAnimation.jsx'
 import Signature from './Signature.jsx'
 import './Signature.css'
 
@@ -45,6 +46,8 @@ export default function Hero() {
           </p>
           <Signature />
         </div>
+
+        <HeroAnimation />
 
         <section className="tech-stack rv" aria-labelledby="tech-stack-title">
           <h2 id="tech-stack-title" className="mono tech-stack-title">Tech Stack</h2>
